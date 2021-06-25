@@ -1,4 +1,5 @@
 <html>
+
 <head>
     <title> Home </title>
 </head>
@@ -26,23 +27,24 @@
        height:50px;   /* Height of the footer */
        background:#070707;
     }
-
-    </style>
+</style>
 
 <div id="body">
 
     </head>
+
     <body>
-    <h1 style="text-align:center;">Welcome to the Rogue Lite Typing Game</h1>
-    <p style="text-align:center;">Welcome to RLTG, use the hyperlink below to find out what the game is about and how to play it</p>
+        <h1 style="text-align:center;">Welcome to the Rogue Lite Typing Game</h1>
+        <p style="text-align:center;">Welcome to RLTG, use the hyperlink below to find out what the game is about and how to play it</p>
 
     </body>
 </div>
 
 <div id="footer">
-		<!-- Footer start -->
-		<p><strong></strong><a href= "about.html"> About </a></a></p>
-		<!-- Footer end -->
-	</div>
+    <!-- Footer start -->
+    <p><a href="about.html"> About </a></p>
+    <p><a href="game.html"> Game </a></p>
+    <!-- Footer end -->
+</div>
 
 </html>
