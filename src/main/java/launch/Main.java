@@ -10,6 +10,8 @@ import org.apache.catalina.webresources.StandardRoot;
 
 public class Main {
 
+    public static long startTime = System.currentTimeMillis();
+
     public static void main(String[] args) throws Exception {
 
         String webappDirLocation = "src/main/webapp/";
@@ -37,5 +39,7 @@ public class Main {
 
         tomcat.start();
         tomcat.getServer().await();
+
+        long startTime = 0;
     }
 }

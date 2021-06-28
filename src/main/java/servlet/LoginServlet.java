@@ -10,20 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "MyServlet",
-        urlPatterns = {"/hello"}
+        name = "LoginServlet",
+        urlPatterns = {"/Login"}
 )
-public class HelloServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
-        for(int i = 0; i<10; i++)
-        {
 
-            out.write("<p>Hello World!</p>".getBytes());
-        }
+            out.write("<form method=\"post\" action=\"/Word\" >".getBytes());
+            out.write("<p> Please login here:- </p>".getBytes());
+            out.write("<input type=\"text\" name=\"Username\">".getBytes());
+            out.write("<input type=\"submit\" value=\"Enter\">".getBytes());
+            out.write("</form>".getBytes());
+
+
         out.flush();
         out.close();
     }

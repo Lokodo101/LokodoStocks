@@ -7,17 +7,22 @@
 <style>
     body {
         background-color: #000000;
+        font-family:arial,helvetica;
     }
     h1 {
         background-color: #070707;
         color:white;
+        font-family:arial,helvetica;
     }
     p {
         background-color: #070707;
         color:white;
+        font-family:arial,helvetica;
+
     }
 
     #body{
+    font-family:arial,helvetica;
     }
 
     #footer {
@@ -26,7 +31,19 @@
        width:100%;
        height:50px;   /* Height of the footer */
        background:#070707;
+       font-family:arial,helvetica;
     }
+    .button {
+            display: inline-block;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #070707;
+            border-radius: 6px;
+            outline: none
+            font-family:arial,helvetica;
+          }
 </style>
 
 <div id="body">
@@ -42,8 +59,8 @@
 
 <div id="footer">
     <!-- Footer start -->
-    <p><a href="about.html"> About </a></p>
-    <p><a href="game.html"> Game </a></p>
+        <p><a class="button" href="about.jsp" style="color: #FFFFFF"> About </a> <a href="game.html" class="button" style="color: #FFFFFF"> Game </a></a>
+
     <!-- Footer end -->
 </div>
 
