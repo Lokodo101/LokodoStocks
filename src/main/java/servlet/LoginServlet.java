@@ -22,7 +22,7 @@ public class LoginServlet extends HttpServlet {
 
             out.write("<form method=\"post\" action=\"/Word\" >".getBytes());
             out.write("<p> Please login here:- </p>".getBytes());
-            out.write("<input type=\"text\" name=\"Username\">".getBytes());
+            out.write("<input type=\"hidden\" name=\"username\">".getBytes());
             out.write("<input type=\"submit\" value=\"Enter\">".getBytes());
             out.write("</form>".getBytes());
 

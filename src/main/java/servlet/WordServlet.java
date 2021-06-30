@@ -1,7 +1,7 @@
 package servlet;
 
 import launch.Main;
-
+import java.util.Scanner;
 import java.io.IOException;
 import java.io.File;
 import javax.servlet.ServletException;
@@ -40,6 +40,7 @@ public class WordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        String questionWord = "";
 
         String username = req.getParameter("Username");
 
@@ -51,10 +52,21 @@ public class WordServlet extends HttpServlet {
         out.write("<p> Destablishementarism </p>".getBytes());
         out.write("<input type=\"text\" name=\"word\">".getBytes());
         out.write("<input type=\"submit\" value=\"GameWord\">".getBytes());
+        out.write(String.format("<input type=\"hidden\" name=\"username\" value=\"%s\">",username).getBytes());
+
         out.write("</form>".getBytes());
 
         Main.startTime = System.currentTimeMillis();
 
+        File myObj = new File("words.txt");
+        Scanner myReader = new Scanner(myObj);
+        for(int i = 0 ; i <=1 ; i++){
+            questionWord = myReader.nextLine();
+            System.out.println("Egg");
+        }
+
+        System.out.println(questionWord);
+        out.write(questionWord.getBytes());
 
         out.flush();
         out.close();
