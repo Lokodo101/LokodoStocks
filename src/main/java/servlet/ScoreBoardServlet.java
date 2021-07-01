@@ -16,11 +16,67 @@ import javax.servlet.http.HttpServletResponse;
 public class ScoreBoardServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
 
         int counter = 1;
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        .
 
         out.write("<h1> Scoreboard </h1>".getBytes());
         out.write("<p> Here are the players that are the best at typing, keep at it gamers!</p>".getBytes());
