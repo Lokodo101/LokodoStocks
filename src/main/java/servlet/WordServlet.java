@@ -1,5 +1,5 @@
 package servlet;
-
+import java.lang.Math;
 import launch.Main;
 import java.util.Scanner;
 import java.io.IOException;
@@ -40,7 +40,20 @@ public class WordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
 
+        int min = 1;
+
+        int max = 53;
+
         String questionWord = "";
+
+        File myObj = new File("words.txt");
+        Scanner myReader = new Scanner(myObj);
+        int randomNum = (int)(Math.random()*(max-min+1)+min);
+        for(int i = 0 ; i <= randomNum ; i++){
+            questionWord = myReader.nextLine();
+        }
+
+        System.out.println(questionWord);
 
         String username = req.getParameter("Username");
 
@@ -49,7 +62,9 @@ public class WordServlet extends HttpServlet {
         ServletOutputStream out = resp.getOutputStream();
 
         out.write("<form method=\"post\" action=\"/Score\" >".getBytes());
-        out.write("<p> Destablishementarism </p>".getBytes());
+        out.write(String.format("Your word is:  %s . <br>", questionWord).getBytes());
+
+
         out.write("<input type=\"text\" name=\"word\">".getBytes());
         out.write("<input type=\"submit\" value=\"GameWord\">".getBytes());
         out.write(String.format("<input type=\"hidden\" name=\"username\" value=\"%s\">",username).getBytes());
@@ -58,18 +73,9 @@ public class WordServlet extends HttpServlet {
 
         Main.startTime = System.currentTimeMillis();
 
-        File myObj = new File("words.txt");
-        Scanner myReader = new Scanner(myObj);
-        for(int i = 0 ; i <=1 ; i++){
-            questionWord = myReader.nextLine();
-            System.out.println("Egg");
-        }
-
-        System.out.println(questionWord);
-        out.write(questionWord.getBytes());
-
         out.flush();
         out.close();
+
 
 
     }

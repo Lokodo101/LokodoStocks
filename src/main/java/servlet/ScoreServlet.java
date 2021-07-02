@@ -53,6 +53,7 @@ public class ScoreServlet extends HttpServlet {
         out.write("".getBytes());
         out.write("".getBytes());
         out.write("".getBytes());
+        out.write("".getBytes());
 
 
         FileWriter myWriter = new FileWriter("scoresheetUsernames.txt", true);
