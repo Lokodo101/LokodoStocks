@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
         name = "ScoreboardServlet",
-        urlPatterns = {"/home"}
+        urlPatterns = {"/scoreboard"}
 )
 public class ScoreboardServlet extends HttpServlet {
 
@@ -71,39 +71,7 @@ public class ScoreboardServlet extends HttpServlet {
 
         //Title
 
-        out.write("<h1>Typing Game!</h1>".getBytes());
-
-        out.write("<button type=\"button\"><a href=\"/login\"> Login </a></button>".getBytes());
-
-
-        out.write("<body>".getBytes());
-
-        // Creates the table
-
-        out.write("<table class=\"center\" id=\"scoreboard\">".getBytes());
-        out.write("<tr>".getBytes());
-        out.write("<th> # </th>".getBytes());
-        out.write("<th> Score -- Name </th>".getBytes());
-        out.write("</tr>".getBytes());
-
-        //Inputs the scores
-
-        File myObj = new File("scoresheetUsernames.txt");
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            out.write("<tr>".getBytes());
-            out.write(String.format("<th> %d </th>", counter).getBytes());
-            out.write(String.format("<th> %s</th>", data).getBytes());
-            out.write("</tr>".getBytes());
-            counter = counter + 1;
-
-        }
-        myReader.close();
-        out.write("</table>".getBytes());
-
-        out.write("</body>".getBytes());
-
+        out.write("<h1>Scoreboard</h1>".getBytes());
 
         out.flush();
         out.close();

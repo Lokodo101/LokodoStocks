@@ -1,5 +1,7 @@
 package servlet;
 
+import launch.Main;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 public class GameServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
         int counter = 1;
@@ -28,6 +30,11 @@ public class GameServlet extends HttpServlet {
 
         out.write("<style>".getBytes());
         out.write("h1 {".getBytes());
+        out.write("font-family:arial,helvetica;".getBytes());
+        out.write("text-align: center".getBytes());
+        out.write("}".getBytes());
+
+        out.write("p {".getBytes());
         out.write("font-family:arial,helvetica;".getBytes());
         out.write("text-align: center".getBytes());
         out.write("}".getBytes());
@@ -69,40 +76,44 @@ public class GameServlet extends HttpServlet {
         out.write("}".getBytes());
         out.write("</style>".getBytes());
 
-        //Title
+        // Setting up random Question
 
-        out.write("<h1>Typing Game!</h1>".getBytes());
+        int min = 1;
 
-        out.write("<button type=\"button\"><a href=\"/login\"> Login </a></button>".getBytes());
+        int max = 53;
 
+        String questionWord = "";
 
-        out.write("<body>".getBytes());
-
-        // Creates the table
-
-        out.write("<table class=\"center\" id=\"scoreboard\">".getBytes());
-        out.write("<tr>".getBytes());
-        out.write("<th> # </th>".getBytes());
-        out.write("<th> Score -- Name </th>".getBytes());
-        out.write("</tr>".getBytes());
-
-        //Inputs the scores
-
-        File myObj = new File("scoresheetUsernames.txt");
+        File myObj = new File("words.txt");
         Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            out.write("<tr>".getBytes());
-            out.write(String.format("<th> %d </th>", counter).getBytes());
-            out.write(String.format("<th> %s</th>", data).getBytes());
-            out.write("</tr>".getBytes());
-            counter = counter + 1;
-
+        int randomNum = (int)(Math.random()*(max-min+1)+min);
+        for(int i = 0 ; i <= randomNum ; i++){
+            questionWord = myReader.nextLine();
         }
-        myReader.close();
-        out.write("</table>".getBytes());
 
-        out.write("</body>".getBytes());
+        System.out.println(questionWord);
+
+        //Question Title
+
+        out.write("<h1>Question</h1>".getBytes());
+
+        //Question Paragraph and word
+        out.write(String.format("Enter the word below in the field as fast as possible! <br><b> %s </b><br> ...", questionWord).getBytes());
+
+        //Entering form
+
+        String username = req.getParameter("username");
+
+
+        out.write("<form method=\"post\" action=\"/game2\" >".getBytes());
+        out.write("<input type=\"text\" name=\"word\">".getBytes());
+        out.write(String.format("<input type=\"hidden\" name=\"username\" value=\"%s\">", username).getBytes());
+        out.write("<input type=\"submit\" value=\"Enter\">".getBytes());
+        out.write("</form>".getBytes());
+
+        Main.startTime = System.currentTimeMillis();
+
+
 
 
         out.flush();

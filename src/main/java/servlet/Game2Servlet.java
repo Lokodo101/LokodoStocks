@@ -1,6 +1,9 @@
 package servlet;
 
+import launch.Main;
+
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -19,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Game2Servlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         ServletOutputStream out = resp.getOutputStream();
         int counter = 1;
@@ -71,38 +74,44 @@ public class Game2Servlet extends HttpServlet {
 
         //Title
 
-        out.write("<h1>Typing Game!</h1>".getBytes());
+        out.write("<h1> Game Page 2</h1>".getBytes());
 
-        out.write("<button type=\"button\"><a href=\"/login\"> Login </a></button>".getBytes());
-
-
-        out.write("<body>".getBytes());
-
-        // Creates the table
-
-        out.write("<table class=\"center\" id=\"scoreboard\">".getBytes());
-        out.write("<tr>".getBytes());
-        out.write("<th> # </th>".getBytes());
-        out.write("<th> Score -- Name </th>".getBytes());
-        out.write("</tr>".getBytes());
-
-        //Inputs the scores
+        //Imported from LokodoStocks
 
         File myObj = new File("scoresheetUsernames.txt");
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            out.write("<tr>".getBytes());
-            out.write(String.format("<th> %d </th>", counter).getBytes());
-            out.write(String.format("<th> %s</th>", data).getBytes());
-            out.write("</tr>".getBytes());
-            counter = counter + 1;
+        myObj.createNewFile();
+        System.out.println("File created: " + myObj.getName());
 
-        }
-        myReader.close();
-        out.write("</table>".getBytes());
 
-        out.write("</body>".getBytes());
+        long time =  System.currentTimeMillis() - Main.startTime;
+
+        double  timeButBetter = time * 0.001;
+
+        System.out.println(time);
+
+        String word = req.getParameter("word");
+        String username = req.getParameter("username");
+
+        System.out.println();
+
+        System.out.println("word: " + word);
+
+
+
+
+
+        out.write("<p> Score page </p>".getBytes());
+        out.write(String.format("<p> Congrats ,%s you have a time of %f seconds ",username, timeButBetter).getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
+
+
+        FileWriter myWriter = new FileWriter("scoresheetUsernames.txt", true);
+        myWriter.write(String.format("\n%f -- %s", timeButBetter,username));
+        myWriter.close();
+        System.out.println("Successfully wrote to the file.");
 
 
         out.flush();

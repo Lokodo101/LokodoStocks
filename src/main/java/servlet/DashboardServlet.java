@@ -109,9 +109,7 @@ public class DashboardServlet extends HttpServlet {
         out.write("</form>".getBytes());
         out.write("</section>".getBytes());
         out.write("<section>".getBytes());
-        out.write("<form method=\"post\" action=\"/scoreboard\">".getBytes());
-        out.write("<input type=\"submit\" value=\"Scoreboard\">".getBytes());
-        out.write("</form>".getBytes());
+        out.write("<button type=\"button\"><a href=\"/scoreboard\"> Scoreboard </a></button>".getBytes());
         out.write("</section>".getBytes());
         out.write("</div>".getBytes());
 
