@@ -1,4 +1,11 @@
 0.206000 -- Leach
 1.168000 -- Lokodo
 1.252000 -- Pain
+2.021000 -- Lokodo
+2.288000 -- Lokodo
+2.656000 -- Loko
 2.804000 -- Lokodo
+3.201000 -- Lokodo
+3.418000 -- Loko
+4.467000 -- Loko
+5.025000 -- Stitch

@@ -32,7 +32,11 @@ public class Game2Servlet extends HttpServlet {
         out.write("<style>".getBytes());
         out.write("h1 {".getBytes());
         out.write("font-family:arial,helvetica;".getBytes());
-        out.write("text-align: center".getBytes());
+        out.write("text-align: left".getBytes());
+        out.write("}".getBytes());
+        out.write("p {".getBytes());
+        out.write("font-family:arial,helvetica;".getBytes());
+        out.write("text-align: left".getBytes());
         out.write("}".getBytes());
 
         out.write("#scoreboard {".getBytes());
@@ -74,7 +78,7 @@ public class Game2Servlet extends HttpServlet {
 
         //Title
 
-        out.write("<h1> Game Page 2</h1>".getBytes());
+        out.write("<h1> Time </h1>".getBytes());
 
         //Imported from LokodoStocks
 
@@ -92,20 +96,8 @@ public class Game2Servlet extends HttpServlet {
         String word = req.getParameter("word");
         String username = req.getParameter("username");
 
-        System.out.println();
 
-        System.out.println("word: " + word);
-
-
-
-
-
-        out.write("<p> Score page </p>".getBytes());
-        out.write(String.format("<p> Congrats ,%s you have a time of %f seconds ",username, timeButBetter).getBytes());
-        out.write("".getBytes());
-        out.write("".getBytes());
-        out.write("".getBytes());
-        out.write("".getBytes());
+        out.write(String.format("<p> Congrats <b>%s</b> <br> You have a time of <b><i>%f</i></b> seconds ",username, timeButBetter).getBytes());
 
 
         FileWriter myWriter = new FileWriter("scoresheetUsernames.txt", true);

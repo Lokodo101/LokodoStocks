@@ -93,7 +93,7 @@ public class LoginServlet extends HttpServlet {
 
         out.write("<form method=\"post\" action=\"dashboard\">".getBytes());
         out.write("<p> Please place your username here:- </p>".getBytes());
-        out.write("<input type=\"text\" name=\"username\">".getBytes());
+        out.write("<input type=\"text\" name=\"username\" pattern=\"[a-zA-Z0-9]+\" minlength=\"4\" maxlength=\"10\">".getBytes());
         out.write("<input type=\"submit\" value=\"enter\">".getBytes());
         out.write("</form>".getBytes());
 

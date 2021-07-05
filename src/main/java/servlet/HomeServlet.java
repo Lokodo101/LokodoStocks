@@ -80,7 +80,7 @@ public class HomeServlet extends HttpServlet {
 
         // Creates the table
 
-        out.write("<table class=\"center\" id=\"scoreboard\">".getBytes());
+        out.write("<table class=\"center\" id=\"scoreboard\" style=\"width:20%\">".getBytes());
         out.write("<tr>".getBytes());
         out.write("<th> # </th>".getBytes());
         out.write("<th> Score -- Name </th>".getBytes());
