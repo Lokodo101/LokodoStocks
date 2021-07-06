@@ -4,7 +4,6 @@ import launch.Main;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -100,24 +99,18 @@ public class GameServlet extends HttpServlet {
         //Question Paragraph and word
         out.write(String.format("Enter the word below in the field as fast as possible! <br><b> %s </b><br> ...", questionWord).getBytes());
 
-        // Input Validation Setup
-
-        int maxLen = questionWord.length();
-        int minLen =   questionWord.length() - 1;
-
-        // Debug
-
-        System.out.println(questionWord);
-        System.out.println(maxLen);
-        System.out.println(minLen);
-
         //Entering form
 
         String username = req.getParameter("username");
 
+        //Question Validation
+
+        int maxlen = questionWord.length();
+        int minlen = questionWord.length() -1;
+
 
         out.write("<form method=\"post\" action=\"/game2\" >".getBytes());
-        out.write(String.format("<input type=\"text\" name=\"word\" pattern=\"[a-zA-Z]+\"minlength=\"%d\" maxlength=\"%d\">", maxLen, maxLen).getBytes());
+        out.write(String.format("<input type=\"text\" name=\"word\" pattern=\"%s\" minlength=\"%d\" maxlength=\"%d\">",questionWord,minlen,maxlen).getBytes());
         out.write(String.format("<input type=\"hidden\" name=\"username\" value=\"%s\">", username).getBytes());
         out.write("<input type=\"submit\" value=\"Enter\">".getBytes());
         out.write("</form>".getBytes());

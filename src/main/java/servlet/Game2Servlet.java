@@ -5,7 +5,6 @@ import launch.Main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -14,12 +13,19 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 @WebServlet(
         name = "Game2Servlet",
         urlPatterns = {"/game2"}
 )
-public class Game2Servlet extends HttpServlet {
+public class  Game2Servlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -32,11 +38,7 @@ public class Game2Servlet extends HttpServlet {
         out.write("<style>".getBytes());
         out.write("h1 {".getBytes());
         out.write("font-family:arial,helvetica;".getBytes());
-        out.write("text-align: left".getBytes());
-        out.write("}".getBytes());
-        out.write("p {".getBytes());
-        out.write("font-family:arial,helvetica;".getBytes());
-        out.write("text-align: left".getBytes());
+        out.write("text-align: center".getBytes());
         out.write("}".getBytes());
 
         out.write("#scoreboard {".getBytes());
@@ -78,7 +80,7 @@ public class Game2Servlet extends HttpServlet {
 
         //Title
 
-        out.write("<h1> Time </h1>".getBytes());
+        out.write("<h1> Game Page 2</h1>".getBytes());
 
         //Imported from LokodoStocks
 
@@ -87,28 +89,118 @@ public class Game2Servlet extends HttpServlet {
         System.out.println("File created: " + myObj.getName());
 
 
-        long time =  System.currentTimeMillis() - Main.startTime;
+        long time = System.currentTimeMillis() - Main.startTime;
 
-        double  timeButBetter = time * 0.001;
+        double timeButBetter = time * 0.001;
 
         System.out.println(time);
 
         String word = req.getParameter("word");
         String username = req.getParameter("username");
 
+        System.out.println();
 
-        out.write(String.format("<p> Congrats <b>%s</b> <br> You have a time of <b><i>%f</i></b> seconds ",username, timeButBetter).getBytes());
+        System.out.println("word: " + word);
+
+
+        out.write("<p> Score page </p>".getBytes());
+        out.write(String.format("<p> Congrats , %s you have a time of %f seconds ", username, timeButBetter).getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
+        out.write("".getBytes());
 
 
         FileWriter myWriter = new FileWriter("scoresheetUsernames.txt", true);
-        myWriter.write(String.format("\n%f -- %s", timeButBetter,username));
+        myWriter.write(String.format("\n%f -- %s", timeButBetter, username));
         myWriter.close();
         System.out.println("Successfully wrote to the file.");
 
+
+        // Back Button
+
+
+        out.write("<form method=\"post\" action=\"/dashboard\">".getBytes());
+        out.write(String.format("<input type=\"hidden\" name=\"username\" value=\"%s\">", username).getBytes());
+        out.write("<input type=\"submit\" value=\"Back\">".getBytes());
+        out.write("</form>".getBytes());
+
+        //Sort TextFile
+
+        BufferedReader reader = null;
+
+        BufferedWriter writer = null;
+
+        //Create an ArrayList object to hold the lines of input file
+
+        ArrayList<String> lines = new ArrayList<String>();
+
+        try
+        {
+            //Creating BufferedReader object to read the input file
+
+            reader = new BufferedReader(new FileReader("scoresheetUsernames.txt"));
+
+            //Reading all the lines of input file one by one and adding them into ArrayList
+
+            String currentLine = reader.readLine();
+
+            while (currentLine != null)
+            {
+                lines.add(currentLine);
+
+                currentLine = reader.readLine();
+            }
+
+            //Sorting the ArrayList
+
+            Collections.sort(lines);
+
+            //Creating BufferedWriter object to write into output file
+
+            writer = new BufferedWriter(new FileWriter("scoresheetUsernamesSorted.txt"));
+
+            //Writing sorted lines into output file
+
+            for (String line : lines)
+            {
+                writer.write(line);
+
+                writer.newLine();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
+        {
+            //Closing the resources
+
+            try
+            {
+                if (reader != null)
+                {
+                    reader.close();
+                }
+
+                if(writer != null)
+                {
+                    writer.close();
+                }
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
 
         out.flush();
         out.close();
     }
 
+
 }
+
+
 

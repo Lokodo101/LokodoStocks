@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 import javax.servlet.ServletException;
@@ -93,9 +92,11 @@ public class LoginServlet extends HttpServlet {
 
         out.write("<form method=\"post\" action=\"dashboard\">".getBytes());
         out.write("<p> Please place your username here:- </p>".getBytes());
-        out.write("<input type=\"text\" name=\"username\" pattern=\"[a-zA-Z0-9]+\" minlength=\"4\" maxlength=\"10\">".getBytes());
+        out.write("<input type=\"text\" name=\"username\" pattern=\"[a-zA-Z0-9]+\" minlength=\"4\" maxlength=\"12\" required>".getBytes());
         out.write("<input type=\"submit\" value=\"enter\">".getBytes());
         out.write("</form>".getBytes());
+
+
 
 
 

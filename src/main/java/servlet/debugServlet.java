@@ -12,10 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(
-        name = "HomeServlet",
-        urlPatterns = {"/home"}
+        name = "debug",
+        urlPatterns = {"/debug"}
 )
-public class HomeServlet extends HttpServlet {
+public class debugServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -66,47 +66,37 @@ public class HomeServlet extends HttpServlet {
         out.write("font-family:arial,helvetica;".getBytes());
         out.write("text-align: center".getBytes());
         out.write("}".getBytes());
+
+        out.write(".topnav-right{".getBytes());
+        out.write("float: right;".getBytes());
+        out.write("text-align: center;".getBytes());
+        out.write("padding: 14px 16px;".getBytes());
+        out.write("text-decoration: none;".getBytes());
+        out.write("font-size: 17px;".getBytes());
+        out.write("}".getBytes());
+
         out.write("</style>".getBytes());
 
-        //Title
+        // BackOut Menu
 
-        out.write("<h1>Typing Game!</h1>".getBytes());
+        out.write("<div class=\"topnav-right\">".getBytes());
+        out.write("<button type=\"button\"><a href=\"/home\"> Back </a></button>".getBytes());
+        out.write("<br>".getBytes());
+        out.write("</div>".getBytes());
 
-        out.write("<button type=\"button\"><a href=\"/login\"> Login </a></button>".getBytes());
+        // Title
+        out.write("<spacer type=\"horizontal\" width=\"100\" height=\"30\"> \n </spacer>".getBytes());
+        out.write("<h1>Login page</h1>".getBytes());
 
-        //Scoreboard
+        // Form
 
-        out.write("<button type=\"button\"><a href=\"/scoreboard\"> Scoreboard </a></button>".getBytes());
+        out.write("<form method=\"post\" action=\"dashboard\">".getBytes());
+        out.write("<p> Please place your username here:- </p>".getBytes());
+        out.write("<input type=\"text\" name=\"username\" pattern=\"lokodo\" minlength=\"4\" maxlength=\"12\" required>".getBytes());
+        out.write("<input type=\"submit\" value=\"enter\">".getBytes());
+        out.write("</form>".getBytes());
 
 
-
-        out.write("<body>".getBytes());
-
-        // Creates the table
-
-        out.write("<table class=\"center\" id=\"scoreboard\">".getBytes());
-        out.write("<tr>".getBytes());
-        out.write("<th> # </th>".getBytes());
-        out.write("<th> Score -- Name </th>".getBytes());
-        out.write("</tr>".getBytes());
-
-        //Inputs the scores
-
-        File myObj = new File("scoresheetUsernamesSorted.txt");
-        Scanner myReader = new Scanner(myObj);
-        while (myReader.hasNextLine()) {
-            String data = myReader.nextLine();
-            out.write("<tr>".getBytes());
-            out.write(String.format("<th> %d </th>", counter).getBytes());
-            out.write(String.format("<th> %s</th>", data).getBytes());
-            out.write("</tr>".getBytes());
-            counter = counter + 1;
-
-        }
-        myReader.close();
-        out.write("</table>".getBytes());
-
-        out.write("</body>".getBytes());
 
 
         out.flush();
