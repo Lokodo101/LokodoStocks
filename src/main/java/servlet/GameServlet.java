@@ -85,7 +85,7 @@ public class GameServlet extends HttpServlet {
 
         File myObj = new File("words.txt");
         Scanner myReader = new Scanner(myObj);
-        int randomNum = (int)(Math.random()*(max-min+1)+min);
+        int randomNum = (int)(Math.random()*(max-min+1)+min)-1;
         for(int i = 0 ; i <= randomNum ; i++){
             questionWord = myReader.nextLine();
         }

@@ -27,8 +27,18 @@ public class HomeServlet extends HttpServlet {
 
         out.write("<style>".getBytes());
         out.write("h1 {".getBytes());
+        out.write("font-family:arial,helvetica".getBytes());
+        out.write("text-align: center".getBytes());
+        out.write("color: white".getBytes());
+        out.write("background-color: #121212".getBytes());
+        out.write("}".getBytes());
+
+        out.write("body {".getBytes());
         out.write("font-family:arial,helvetica;".getBytes());
         out.write("text-align: center".getBytes());
+        out.write("font-family: arial".getBytes());
+        out.write("color: white".getBytes());
+        out.write("background-color: #121212".getBytes());
         out.write("}".getBytes());
 
         out.write("#scoreboard {".getBytes());
@@ -68,6 +78,11 @@ public class HomeServlet extends HttpServlet {
         out.write("}".getBytes());
         out.write("</style>".getBytes());
 
+        //body div
+
+        out.write("<body>".getBytes());
+
+
         //Title
 
         out.write("<h1>Typing Game!</h1>".getBytes());
@@ -80,7 +95,6 @@ public class HomeServlet extends HttpServlet {
 
 
 
-        out.write("<body>".getBytes());
 
         // Creates the table
 

@@ -104,15 +104,17 @@ public class  Game2Servlet extends HttpServlet {
 
 
         out.write("<p> Score page </p>".getBytes());
-        out.write(String.format("<p> Congrats , %s you have a time of %f seconds ", username, timeButBetter).getBytes());
+        out.write(String.format("<p> Congrats , %s you have a time of %.3f seconds ", username, timeButBetter).getBytes());
         out.write("".getBytes());
         out.write("".getBytes());
         out.write("".getBytes());
         out.write("".getBytes());
 
+
+        //ScoreWrite
 
         FileWriter myWriter = new FileWriter("scoresheetUsernames.txt", true);
-        myWriter.write(String.format("\n%f -- %s", timeButBetter, username));
+        myWriter.write(String.format("\n%.3f -- %s", timeButBetter, username));
         myWriter.close();
         System.out.println("Successfully wrote to the file.");
 
@@ -135,8 +137,7 @@ public class  Game2Servlet extends HttpServlet {
 
         ArrayList<String> lines = new ArrayList<String>();
 
-        try
-        {
+        try {
             //Creating BufferedReader object to read the input file
 
             reader = new BufferedReader(new FileReader("scoresheetUsernames.txt"));
@@ -145,8 +146,7 @@ public class  Game2Servlet extends HttpServlet {
 
             String currentLine = reader.readLine();
 
-            while (currentLine != null)
-            {
+            while (currentLine != null) {
                 lines.add(currentLine);
 
                 currentLine = reader.readLine();
@@ -154,7 +154,7 @@ public class  Game2Servlet extends HttpServlet {
 
             //Sorting the ArrayList
 
-            Collections.sort(lines);
+            Collections.sort(lines, new ScoreSorter());
 
             //Creating BufferedWriter object to write into output file
 
@@ -162,45 +162,37 @@ public class  Game2Servlet extends HttpServlet {
 
             //Writing sorted lines into output file
 
-            for (String line : lines)
-            {
+            for (String line : lines) {
                 writer.write(line);
 
                 writer.newLine();
             }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
-        }
-        finally
-        {
+        } finally {
             //Closing the resources
 
-            try
-            {
-                if (reader != null)
-                {
+            try {
+                if (reader != null) {
                     reader.close();
                 }
 
-                if(writer != null)
-                {
+                if (writer != null) {
                     writer.close();
                 }
-            }
-            catch (IOException e)
-            {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
 
-        out.flush();
-        out.close();
+
+
+            out.flush();
+            out.close();
+        }
+
+
     }
-
-
-}
 
 
 
